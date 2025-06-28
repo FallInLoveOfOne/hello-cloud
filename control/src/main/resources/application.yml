@@ -12,6 +12,7 @@ spring:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         group: DEFAULT_GROUP
+
 logging:
   level:
-    com.alibaba.nacos: debug
+    com.alibaba.nacos: info
