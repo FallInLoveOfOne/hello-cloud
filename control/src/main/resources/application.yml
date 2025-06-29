@@ -17,8 +17,6 @@ spring:
         group: DEFAULT_GROUP
         refresh-enabled: true
     loadbalancer:
-      ribbon:
-        enabled: false
       nacos:
         enabled: true
 logging:

@@ -17,6 +17,7 @@
         <module>common</module>
         <module>control</module>
         <module>base</module>
+        <module>gateway</module>
     </modules>
     <packaging>pom</packaging>
     <description>hello cloud</description>
