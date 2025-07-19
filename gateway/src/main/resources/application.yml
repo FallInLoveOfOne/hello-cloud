@@ -37,8 +37,19 @@ management:
   endpoint:
     health:
       show-details: always
+  #zipkin
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+        type: B3
+  zipkin:
+    tracing:
+      endpoint: http://127.0.0.1:9411/api/v2/spans
 
 
 logging:
   level:
     org.springframework.cloud.gateway: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId},%X{spanId}] %-5level %logger{36} - %msg%n"

@@ -19,6 +19,7 @@ public class HelloController {
 
     @GetMapping("/call/service")
     public String callService() {
+        log.info("Calling service...");
         return callService.call();
     }
 }
