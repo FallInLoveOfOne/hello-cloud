@@ -19,26 +19,33 @@ spring:
     sentinel:
       enabled: true
       eager: true
+      filter:
+        enabled: false
       transport:
         port: 8719
         dashboard: http://127.0.0.1:8080/
-#      datasource:
-#        ds1:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-#            data-id: sentinel-gateway-rules.json
-#            namespace: ba334d77-7d72-4a5e-8197-fdfd9dcfc979
-#            group-id: DEFAULT_GROUP
-#            rule-type: flow
-#            data-type: json
+        client-ip: 127.0.0.1
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: sentinel-gateway-rules.json
+            namespace: ae663af7-b90a-49e3-ad10-05b5dfa6b304
+            group-id: DEFAULT_GROUP
+            rule-type: gw_flow
+            data-type: json
+      scg:
+        fallback:
+          content-type: application/json
+          mode: response
+          response-status: 200
+          response-body: "{\"code\": 429, \"message\": \"服务器异常，请稍后重试！\"}"
 
     gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
 management:
   endpoints:
@@ -53,7 +60,7 @@ management:
     sampling:
       probability: 1.0
     propagation:
-        type: B3
+      type: B3
   zipkin:
     tracing:
       endpoint: http://127.0.0.1:9411/api/v2/spans
@@ -62,5 +69,7 @@ management:
 logging:
   level:
     org.springframework.cloud.gateway: debug
+    com.alibaba.csp.sentinel: DEBUG
+    org.springframework.cloud.alibaba.sentinel: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId},%X{spanId}] %-5level %logger{36} - %msg%n"

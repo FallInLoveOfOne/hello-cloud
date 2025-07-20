@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.3</version>
+        <version>3.2.4</version>
         <relativePath/>
     </parent>
     <groupId>com.sh</groupId>
@@ -39,7 +39,7 @@
         <java.version>21</java.version>
 
         <!-- Spring Cloud 和 Alibaba 版本号 -->
-        <spring-cloud.version>2025.0.0</spring-cloud.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
         <!--<spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>-->
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
 
