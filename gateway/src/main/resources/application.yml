@@ -23,23 +23,25 @@ spring:
         enabled: false
       transport:
         port: 8719
-        dashboard: http://127.0.0.1:8080/
+        #端口后面千万别加"/"
+        dashboard: http://127.0.0.1:8080
         client-ip: 127.0.0.1
       datasource:
-        ds1:
+        ds:
           nacos:
             server-addr: 127.0.0.1:8848
             data-id: sentinel-gateway-rules.json
             namespace: ae663af7-b90a-49e3-ad10-05b5dfa6b304
             group-id: DEFAULT_GROUP
+            #网关模式必须配置gw_flow
             rule-type: gw_flow
             data-type: json
       scg:
         fallback:
           content-type: application/json
           mode: response
-          response-status: 200
-          response-body: "{\"code\": 429, \"message\": \"服务器异常，请稍后重试！\"}"
+          response-status: 429
+          response-body: "{\"message\": \"服务器繁忙，请稍后重试！\"}"
 
     gateway:
       discovery:
@@ -47,6 +49,8 @@ spring:
           enabled: true
           lower-case-service-id: true
 
+#http://localhost:8686/actuator
+#http://localhost:8686/actuator/gateway/routes
 management:
   endpoints:
     web:
@@ -55,6 +59,12 @@ management:
   endpoint:
     health:
       show-details: always
+    gateway:
+      enabled: true
+    sentinel:
+      enabled: true
+    metrics:
+      enabled: true
   #zipkin
   tracing:
     sampling:
