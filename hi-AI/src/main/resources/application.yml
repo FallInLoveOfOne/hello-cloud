@@ -1,0 +1,14 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: alibaba-spring-ai-demo
+  ai:
+    dashscope:
+      api-key: "sk-hi"
+
+logging:
+  level:
+    org.springframework.ai: debug
+    com.alibaba.dashscope.api: debug
+    com.alibaba.cloud.ai.dashscope.chat: debug
